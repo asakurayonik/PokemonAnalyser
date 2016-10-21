@@ -145,9 +145,7 @@ public class Calculator {
 		return (int) ((2*bs+iv+ev/4)*level/100+5);
 	}
 	
-	public double getDamage(double ap, double atk, double def) {
-		//return (double) ((double)(2*level+10)/250*(double)(atk/def)*ap+2);
-		System.out.println(ap + " " + atk + " " +def);
+	public double getDamage(int ap, int atk, int def) {
 		return Math.floor(Math.floor((Math.floor((2 * level) / 5 + 2) * ap * atk) / def) / 50 + 2);
 	}
 	
