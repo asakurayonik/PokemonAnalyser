@@ -808,46 +808,49 @@ public class GUI {
 
 						// ---------------- Damage ----------------
 						double damage = 0;
-						int atkPower = (int) (Integer
-								.parseInt(textFieldAtkPower.getText()) * Double
-								.parseDouble(textFieldAtkPowerC.getText()));
-						int atk = 0;
-						int def = 0;
+						double atkPower =  Double
+								.parseDouble(textFieldAtkPower.getText()) * Double
+								.parseDouble(textFieldAtkPowerC.getText());
+						double atk = 0;
+						double def = 0;
 						if (comboBoxAtkCategory.getSelectedItem().equals("物")) {
-							atk = (int) (atkStatA * Double
+							atk = ((double)atkStatA * Double
 									.parseDouble(textFieldAtkC.getText()));
-							def = (int) (defStatD * Double
+							def = ((double)defStatD * Double
 									.parseDouble(textFieldDefC.getText()));
 						} else if (comboBoxAtkCategory.getSelectedItem()
 								.equals("特")) {
-							atk = (int) (sAtkStatA * Double
+							atk = ((double)sAtkStatA * Double
 									.parseDouble(textFieldAtkC.getText()));
-							def = (int) (sDefStatD * Double
+							def = ((double)sDefStatD * Double
 									.parseDouble(textFieldDefC.getText()));
 						} else if (comboBoxAtkCategory.getSelectedItem()
 								.equals("特物")) {
-							atk = (int) (sAtkStatA * Double
+							atk = ((double)sAtkStatA * Double
 									.parseDouble(textFieldAtkC.getText()));
-							def = (int) (defStatD * Double
+							def = ((double)defStatD * Double
 									.parseDouble(textFieldDefC.getText()));
 						}
 						damage = c.getDamage(atkPower, atk, def);
-						damage = (double) (damage * Double
-								.parseDouble(textFieldDamageC.getText()));
+						String output = "伤害: " + Double.toString(damage) + "\n";
+						textArea.setText(output);
+						damage = damage * Double
+								.parseDouble(textFieldDamageC.getText());
 						if (textFieldAtkType.getText().equals(A.getType1()) ||
-								textFieldAtkType.getText().equals(A.getType1())) {
+								textFieldAtkType.getText().equals(A.getType2())) {
 							damage = 1.5*damage;
 						}
-						if (A.getType2().equals("无"))
-							damage = (double) (damage * c.getTypeC(
+						if (D.getType2().equals("无"))
+							damage = (damage * c.getTypeC(
 									textFieldAtkType.getText(), D.getType1()));
 						else
-							damage = (double) (damage * c.getTypeC(
+							damage = (damage * c.getTypeC(
 									textFieldAtkType.getText(), D.getType1(),
 									D.getType2()));
-						String output = Double.toString((double) (damage * 0.85))
-								+ "% ~ " + Double.toString(damage) + "%";
-						textArea.setText(output);
+						output = "修正后: " + Double.toString(damage*0.85) + " ~ " + Double.toString(damage)
+								+ "\n百分比: " + Double.toString(damage*85/hpStatD)
+								+ "% ~ " + Double.toString(damage*100/hpStatD) + "%";
+						textArea.append(output);
 					}
 				}
 			}
