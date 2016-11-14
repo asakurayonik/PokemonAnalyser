@@ -32,6 +32,7 @@ public class GUI {
 	private ArrayList<Pokemon> pList;
 	private JTextArea textArea;
 	private JButton btnCompute;
+	private JButton btnExit;
 	private JLabel lblAttacker;
 	private JLabel lblDefender;		
 	private JTextField textFieldNameA;
@@ -152,11 +153,15 @@ public class GUI {
 		frame.getContentPane().add(lblDefender);
 		
 		btnCompute = new JButton("看见了！一巡之后！");
-		btnCompute.setBounds(10, 375, 200, 50);
+		btnCompute.setBounds(10, 375, 200, 75);
 		frame.getContentPane().add(btnCompute);
 		
+		btnExit = new JButton("\u8BA1\u7B97\u4E4B\u5185~");
+		btnExit.setBounds(10, 460, 200, 75);
+		frame.getContentPane().add(btnExit);
+		
 		textArea = new JTextArea();
-		textArea.setBounds(230, 375, 350, 150);
+		textArea.setBounds(230, 375, 420, 160);
 		frame.getContentPane().add(textArea);
 		
 		textFieldNameA = new JTextField();
@@ -489,7 +494,7 @@ public class GUI {
 		textFieldDamageC.setBounds(455, 300, 40, 20);
 		frame.getContentPane().add(textFieldDamageC);
 		textFieldDamageC.setColumns(10);
-		textFieldDamageC.setText("1");
+		textFieldDamageC.setText("1");	
 		
 		textFieldValueA = new JTextField[6];
 		for (int i=0; i<6; i++) {
@@ -684,7 +689,7 @@ public class GUI {
 		
 		btnCompute.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mousePressed(MouseEvent arg0) {
 				if (checkInput()) {
 					Pokemon A = null;
 					for (Pokemon pm : pList) {
@@ -853,6 +858,13 @@ public class GUI {
 						textArea.append(output);
 					}
 				}
+			}
+		});
+		
+		btnExit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				System.exit(0);
 			}
 		});
 	}
